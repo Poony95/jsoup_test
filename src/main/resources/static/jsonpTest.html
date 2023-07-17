@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+	$(function(){
+		$("#btnSame").click(function(){
+			$.ajax({
+				url:"/getMember",
+				success:function(data){
+					alert(data);
+				}
+				});
+		});
+	});
+	
+	$(function(){
+		$("#btnOther").click(function(){
+			$.ajax({
+				url:"http://211.238.142.159:8080/getMember",
+				jsonpCallback:"sist",
+				dataType:"jsonp",
+				success:function(data){
+					$.each(data, function(){
+						console.log(this.name);
+						console.log(this.addr);
+					});
+				}
+				});
+		});
+	});
+</script>
+</head>
+<body>
+	<button id="btnSame">동일한 도메인에 있는 Ajax요청</button>
+	<button id="btnOther">다른 도메인에 있는 Ajax요청</button>
+</body>
+</html>
+
+
+
+
+
